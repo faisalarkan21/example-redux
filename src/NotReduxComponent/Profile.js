@@ -1,10 +1,28 @@
 import { Avatar, Card } from "antd";
-import ActionButton from "./ChildAction";
+import { useEffect, useState } from "react";
+
+/**
+ * @TODO
+ * di komponent ActionButton
+ */
+import { ActionButton } from "./ChildIcon/IndexAction";
+
 const { Meta } = Card;
 
-function Profile() {
+function Profile(props) {
+  const [enable, setEnable] = useState("");
+
+  useEffect(() => {
+    if (props.children === "Faisal Arkan") {
+      setEnable({ ellipsis: true, setting: true, edit: true });
+      return;
+    }
+    setEnable(false);
+  }, []);
+
   return (
     <Card
+      title={props.children}
       style={{ width: 300 }}
       cover={
         <img
@@ -12,7 +30,7 @@ function Profile() {
           src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
         />
       }
-      actions={ActionButton}
+      actions={ActionButton(enable)}
     >
       <Meta
         avatar={
