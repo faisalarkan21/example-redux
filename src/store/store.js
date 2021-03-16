@@ -1,11 +1,14 @@
-import { createBrowserHistory } from 'history';
 import { applyMiddleware, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
+import logger from 'redux-logger'
 import rootReducer from "./reducers";
 
-
 export default function configureStore(preloadedState) {
-  const history = createBrowserHistory();
-  const store = createStore(rootReducer(history), preloadedState, applyMiddleware(thunkMiddleware));    
+  
+  const store = createStore(
+    rootReducer(),
+    preloadedState,
+    applyMiddleware(...[thunkMiddleware, logger])
+  );
   return store;
 }

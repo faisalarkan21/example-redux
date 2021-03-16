@@ -1,12 +1,11 @@
 import "./App.css";
-import Profile from "./NotReduxComponent/Profile";
+import TableUsers from "./ReduxComponent/Users/ListUsers";
 
-function App() {
+function App(props) {
+  console.log('zzz', props)
   return (
     <div className="App">
-      <Profile >
-          Faisal Arkan
-        </Profile>
+      <TableUsers />
     </div>
   );
 }
